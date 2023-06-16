@@ -1,0 +1,4 @@
+[submodule "sca-fuzzer"]
+    path = sca-fuzzer
+    url = git@github.com:microsoft/sca-fuzzer.git
+    branch = 1.3-dev
