@@ -1,0 +1,20 @@
+
+INFO: [fuzzer] Starting at 17:49:20
+
+INFO: [prog_gen] Setting program_generator_seed to random value: 815508
+1     ( 1%)| Stats: Cls:0/0,In:200,SF:0,OF:1,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         2     ( 1%)| Stats: Cls:0/0,In:200,SF:1,OF:1,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         3     ( 1%)| Stats: Cls:0/0,In:200,SF:2,OF:1,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         4     ( 1%)| Stats: Cls:0/0,In:200,SF:3,OF:1,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         5     ( 1%)| Stats: Cls:0/0,In:200,SF:4,OF:1,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         6     ( 1%)| Stats: Cls:0/0,In:200,SF:5,OF:1,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         7     ( 1%)| Stats: Cls:0/0,In:200,SF:6,OF:1,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         8     ( 1%)| Stats: Cls:0/0,In:200,SF:6,OF:2,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         9     ( 1%)| Stats: Cls:0/0,In:200,SF:7,OF:2,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         10    ( 1%)| Stats: Cls:0/0,In:200,SF:8,OF:2,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         11    ( 1%)| Stats: Cls:0/0,In:200,SF:9,OF:2,FV:0,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         12    ( 1%)| Stats: Cls:100/100,In:200,SF:9,OF:2,FV:1,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         13    ( 1%)| Stats: Cls:100/100,In:200,SF:10,OF:2,FV:1,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         14    ( 1%)| Stats: Cls:100/100,In:200,SF:11,OF:2,FV:1,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         15    ( 1%)| Stats: Cls:100/100,In:200,SF:12,OF:2,FV:1,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         16    ( 1%)| Stats: Cls:100/100,In:200,SF:13,OF:2,FV:1,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         17    ( 1%)| Stats: Cls:100/100,In:200,SF:14,OF:2,FV:1,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         18    ( 1%)| Stats: Cls:100/100,In:200,SF:15,OF:2,FV:1,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         19    ( 1%)| Stats: Cls:100/100,In:200,SF:16,OF:2,FV:1,NE:0,NO:0,TM:0,FL:0,PR:0,V:0                         Traceback (most recent call last):
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/revizor.py", line 16, in <module>
+    exit_code = main()
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/src/cli.py", line 237, in main
+    exit_code = fuzzer.start(
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/src/x86/x86_fuzzer.py", line 81, in start
+    return super().start(num_test_cases, num_inputs, timeout, nonstop)
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/src/fuzzer.py", line 112, in start
+    violation = self.fuzzing_round(test_case, inputs)
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/src/fuzzer.py", line 145, in fuzzing_round
+    htraces = self.executor.trace_test_case(
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/src/x86/x86_executor.py", line 103, in trace_test_case
+    write_to_sysfs_file_bytes(byte_inputs_merged, "/sys/x86_executor/inputs")
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/src/x86/x86_executor.py", line 19, in write_to_sysfs_file_bytes
+    f.write(value)
+KeyboardInterrupt

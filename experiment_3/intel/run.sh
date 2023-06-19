@@ -11,7 +11,7 @@ TIMEOUT=$(( 24 * 3600 ))
 WORK_DIR=$(realpath $SCRIPT_DIR/../../)
 echo "HOME=$WORK_DIR"
 
-revizor_src="$WORK_DIR/sca-fuzzer"
+revizor_src="$revizor_src/sca-fuzzer"
 instructions="$WORK_DIR/base.json"
 timestamp=$(date '+%y-%m-%d-%H-%M')
 

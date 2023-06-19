@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/revizor.py", line 16, in <module>
+    exit_code = main()
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/src/cli.py", line 237, in main
+    exit_code = fuzzer.start(
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/src/x86/x86_fuzzer.py", line 80, in start
+    check_instruction_list(self.instruction_set)
+  File "/home/emanuele/SpeculationAtFault-AE/sca-fuzzer/src/x86/x86_fuzzer.py", line 65, in check_instruction_list
+    assert "mpx" in cpu_flags and "BNDCU" in all_instruction_names
+AssertionError

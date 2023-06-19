@@ -12,7 +12,7 @@ WORK_DIR=$(realpath $SCRIPT_DIR/../../)
 echo "HOME=$WORK_DIR"
 
 revizor_src="$WORK_DIR/sca-fuzzer"
-instructions="$WORK_DIR/base.json"
+instructions="$revizor_src/base.json"
 timestamp=$(date '+%y-%m-%d-%H-%M')
 
 results="$SCRIPT_DIR/results"
