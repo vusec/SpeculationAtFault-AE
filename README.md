@@ -51,6 +51,7 @@ pip3 install build
 Install from source (This will also install dependencies):
 
 ```bash
+cd sca-fuzzer
 make install
 ```
 
