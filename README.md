@@ -2,7 +2,7 @@
 **Paper:** "Speculation at Fault: Modeling and Testing Microarchitectural Leakage of CPU Exceptions"
 
 ## Requirements & Dependencies
-The fuzzer includes a kernel module that implement the executor. The executor sets MSR registers in order to disable the hardware prefetcher amd performance counters. 
+The fuzzer includes a kernel module that implements the executor. The executor sets MSR registers in order to disable the hardware prefetcher amd performance counters. 
 By overwriting the OS-defined IDT, the executor suppresses the handling of exceptions on the running core. It is important to note that this may affect other jobs running on your system. 
 The fuzzer executes randomly generated programs in kernel space, intended to throw exceptions. Even though the executor provides a stable and isolated environment, it may adversely affect the stability of your system.
 
