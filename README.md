@@ -8,7 +8,7 @@ The fuzzer executes randomly generated programs in kernel space, intended to thr
 
 ### Hardwre Requirements
 The artifact requires at least one physical machine with an Intel CPU and one physical machine with AMD CPU. Root access is required. 
-Speculative Store Bypass (SSB) patch must enabled.
+Speculative Store Bypass (SSB) patch must be enabled.
 
 ### Software Requirements
 
@@ -51,6 +51,7 @@ pip3 install build
 Install from source (This will also install dependencies):
 
 ```bash
+cd sca-fuzzer
 make install
 ```
 
@@ -78,17 +79,17 @@ python sca-fuzzer/revizor.py download_spec -a x86-64 --extensions BASE SSE SSE2 
 ```
 
 ### Basic Usability Test
-Try to run:
+From the base directory, try to run:
 
 ```bash
-python sca-fuzzer/revizor.py fuzz -s base.json -c basic/seq-BP.yaml  -i 100 -n 100000000
+python sca-fuzzer/revizor.py fuzz -s sca-fuzzer/base.json -c basic/seq-BP.yaml  -i 100 -n 100000000
 ```
 
 Revizor will start fuzzing *Breakpoint* exception.  Revizor should not report any violation since #BR does not trigger speculation. Press *CTRL-C* to interrupt.
 
 Now, try the following command to fuzz page fault (#PF).
 ```bash
-python sca-fuzzer/revizor.py fuzz -s base.json -c basic/seq-PF.yaml  -i 100 -n 100000000
+python sca-fuzzer/revizor.py fuzz -s sca-fuzzer/base.json -c basic/seq-PF.yaml  -i 100 -n 100000000
 ```
 
 Revizor should exit and report a violation after few seconds:
