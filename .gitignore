@@ -1,0 +1,4 @@
+*.json
+*.asm
+*.o
+*/results/*
