@@ -1,4 +1,4 @@
 *.json
 *.asm
 *.o
-*/results/*
+./**/results/
