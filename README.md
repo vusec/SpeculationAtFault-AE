@@ -8,7 +8,7 @@ The fuzzer executes randomly generated programs in kernel space, intended to thr
 
 ### Hardwre Requirements
 The artifact requires at least one physical machine with an Intel CPU and one physical machine with AMD CPU. Root access is required. 
-Speculative Store Bypass (SSB) patch must enabled.
+Speculative Store Bypass (SSB) patch must be enabled.
 
 ### Software Requirements
 
