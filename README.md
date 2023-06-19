@@ -74,21 +74,21 @@ rvzr download_spec -a x86-64 --extensions BASE SSE SSE2 CLFLUSHOPT CLFSH MPX --o
 ```
 or
 ```bash
-python revizor.py download_spec -a x86-64 --extensions BASE SSE SSE2 CLFLUSHOPT CLFSH MPX --outfile base.json
+python sca-fuzzer/revizor.py download_spec -a x86-64 --extensions BASE SSE SSE2 CLFLUSHOPT CLFSH MPX --outfile base.json
 ```
 
 ### Basic Usability Test
 Try to run:
 
 ```bash
-python sca-fuzzer/revizor.py fuzz -s sca-fuzzer/base.json -c basic/seq-BP.yaml  -i 100 -n 100000000
+python sca-fuzzer/revizor.py fuzz -s base.json -c basic/seq-BP.yaml  -i 100 -n 100000000
 ```
 
 Revizor will start fuzzing *Breakpoint* exception.  Revizor should not report any violation since #BR does not trigger speculation. Press *CTRL-C* to interrupt.
 
 Now, try the following command to fuzz page fault (#PF).
 ```bash
-python sca-fuzzer/revizor.py fuzz -s sca-fuzzer/base.json -c basic/seq-PF.yaml  -i 100 -n 100000000
+python sca-fuzzer/revizor.py fuzz -s base.json -c basic/seq-PF.yaml  -i 100 -n 100000000
 ```
 
 Revizor should exit and report a violation after few seconds:
