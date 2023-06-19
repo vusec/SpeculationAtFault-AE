@@ -78,6 +78,55 @@ python revizor.py download_spec -a x86-64 --extensions BASE SSE SSE2 CLFLUSHOPT 
 ```
 
 ### Basic Usability Test
+Try to run:
+
+```bash
+python sca-fuzzer/revizor.py fuzz -s sca-fuzzer/base.json -c basic/seq-BP.yaml  -i 100 -n 100000000
+```
+
+Revizor will start fuzzing *Breakpoint* exception.  Revizor should not report any violation since #BR does not trigger speculation. Press *CTRL-C* to interrupt.
+
+Now, try the following command to fuzz page fault (#PF).
+```bash
+python sca-fuzzer/revizor.py fuzz -s sca-fuzzer/base.json -c basic/seq-PF.yaml  -i 100 -n 100000000
+```
+
+Revizor should exit and report a violation after few seconds:
+
+```bash
+> Validating violation...> Priming  47             
+
+================================ Violations detected ==========================
+Contract trace:
+ 9099680964197786616 (hash)
+Hardware traces:
+ Inputs [65]:
+  ^.^^.................................^..^.........^.........^^^^
+ Inputs [165]:
+  ^.^^....................^^..............^.........^...^.....^^^^
+
+
+================================ Statistics ===================================
+
+Test Cases: 1
+Inputs per test case: 200.0
+Violations: 1
+Effectiveness: 
+  Total Cls: 100.0
+  Effective Cls: 100.0
+Discarded Test Cases:
+  Speculation Filter: 0
+  Observation Filter: 0
+  No Fast-Path Violation: 0
+  Noise-Based FP: 0
+  No Max-Nesting Violation: 0
+  Tainting Mistakes: 0
+  Flaky Tests: 0
+  Priming Check: 0
+
+Duration: 4.3
+Finished at 13:14:43
+```
 
 
 ## Experiments
