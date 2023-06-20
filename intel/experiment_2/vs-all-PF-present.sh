@@ -20,4 +20,4 @@ mkdir -p $results
 
 logfile="$SCRIPT_DIR/results/PF-present-$timestamp.log"
 echo "[+] Fuzzing #PF (present bit) with $contract; Log at $logfile"
-rvzr fuzz -s $instructions -c  $SCRIPT_DIR/PF-present.yaml -i 100 -n 100000000 --timeout $TIMEOUT  -w $SCRIPT_DIR/results/violations/ &> $logfile
+rvzr fuzz -s $instructions -c  $SCRIPT_DIR/vs-all-PF-present.yaml -i 100 -n 100000000 --timeout $TIMEOUT  -w $SCRIPT_DIR/results/violations/ &> $logfile
