@@ -171,7 +171,7 @@ The scripts stores log files inside `results/` in the experiment's directory (e.
 
 ### Intel
 
-#### Experiment 1
+#### Experiment 1 (C1 - page faults - violation) [1/2 machine hours]
 
 ```bash
 ./intel/experiment_1/run.sh
@@ -180,17 +180,22 @@ Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
 
 **Result:** violation (for all classes)
 
-#### Experiment 2
+#### Experiment 2 (C1 - page faults - correct) [72 machine hours]
 
-```bash
-./intel/experiment_2/run.sh
-```
 Test each page fault class (invalid, read-only, SMAP) against *CT-VS-NI* on CoffeeLake (and newer), resp. against *CT-VS-All* (on KabyLake and older).
+
+On CoffeeLake (and newer):
+```bash
+./intel/experiment_2/vs-ni-PF/run.sh
+```
+On KabyLake (and older)
+```bash
+./intel/experiment_2/vs-all-PF/run.sh
+```
 
 **Result:** no violation. 
 
-
-#### Experiment 3
+#### Experiment 3 (C2 - non-canonical accesses -  violation) [24 machine hours]
 ```bash
 ./intel/experiment_3/run.sh
 ```
@@ -200,6 +205,7 @@ Test #GP (i.e., non-canonical memory accesses) against *CT-VS-All*
 **Result:** violation. Due to the complexity of the contract, finding a violation may take several hours (it was 11h when we ran the experiment).
 
 #### Experiment 4
+
 #### Experiment 5
 #### Experiment 6
 #### Experiment 7
