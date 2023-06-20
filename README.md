@@ -258,3 +258,24 @@ Test #UD, #DB and #BP against *CT-SEQ*.
 ```
 
 **Result:** no violation.
+
+### AMD
+#### Experiment 1 (C1 - page faults - violation) [1/6 machine hours]: 
+
+#### Experiment 2 (C1 - page faults - correct) [72 machine hours]
+
+#### Experiment 3 (C2 - non-canonical accesses) -  violation} [1/12 machine hours]
+
+#### Experiment 4 (C2 - non-canonical accesses) -  correct} [24 machine hours]
+
+#### Experiment 5 (C4 - ucode-assists - correct) [48 machine hours]
+
+#### Experiment 6 (C5 - division - violation) [2 machine hours]
+
+#### Experiment 7 (C5 - division by zero - correct) [24 machine hours]
+
+#### Experiment 8 (C5 - division overflow - correct) [24 machine hours]
+
+#### Experiment 9 (C6 - others - correct) [72 machine hours]
+
+
