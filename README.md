@@ -53,6 +53,14 @@ Create a virtual environment:
 ```
 # On Ubuntu
 python3 -m venv ~/venv-revizor
+```
+Alternatively, use virtualenv:
+```
+python3 -m virtualenv ~/venv-revizor
+```
+
+and activate the virtual environment
+```
 source ~/venv-revizor/bin/activate
 ```
 
