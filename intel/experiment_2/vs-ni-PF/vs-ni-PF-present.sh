@@ -8,7 +8,7 @@ SCRIPT=$(realpath $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
 TIMEOUT=$(( 24 * 3600 ))
 
-WORK_DIR=$(realpath $SCRIPT_DIR/../../)
+WORK_DIR=$(realpath $SCRIPT_DIR/../../../)
 
 instructions="$WORK_DIR/base.json"
 timestamp=$(date '+%y-%m-%d-%H-%M')
