@@ -144,7 +144,7 @@ Finished at 13:14:43
 ```
 
 
-## Claims
+## Claims & Experiments
 The main results are reported in Table 1 of the original paper.
 The results can be summarized in the following claims:
 
@@ -155,7 +155,7 @@ The results can be summarized in the following claims:
 - **C5** - #DE complies with *CT-VS-Ops* on Intel and AMD Zen3, and with *CT-VS-All* on AMD Zen+.
 - **C6** - #UD, #DB, and #BP comply with *CT-SEQ* on all machines. 
 
-### Experiments
+### Experiments design
 Our experiments serve two purposes: (1) validating our claims regarding which contract satisfies which exception on which machine, and (2) confirming Revizor's effectiveness in generating counterexamples.
 For each exception, we therefore propose one experiment that validates the correct contract and one experiment that finds a counterexample for the next more restrictive contract (if one exists).
 Each experiments runs for 24h or until a violation is found.
@@ -163,6 +163,44 @@ Remember though that Revizor is based on random testing,  it is thus possible (b
 If this is the case, we suggest to repeat the experiment.
 We split our experiments according to the type of machine under test. 
 
+### How-to:
+This artifact has one directory for each experiment and architecture.
+For example, the scripts to run *Experiment 1* on Intel CPUs are stored inside \code{./intel/experiment\_1/}.
+
+The scripts produce log files that are store inside a `results` subdirectory (e.g., `./intel/experiment_1/results/` for *Experiment 1* on Intel).
+
+### Experiment 1
+
 #### Intel
 
+```bash
+./intel/experiment_1/run.sh
+```
+
+Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
+
 #### AMD
+```bash
+./amd/experiment_1/run.sh
+```
+Test each page fault class (invalid, read-only, SMAP) against *CT-SEQ*.
+
+**Result:** Revizors finds a violation for each page fault class and contract. You can find a report in the log files in the `results` subdirectory.
+
+### Experiment 2
+#### Intel
+
+```bash
+./intel/experiment_2/run.sh
+```
+Test each page fault class (invalid, read-only, SMAP) against *CT-VSPEC-All*.
+
+#### AMD
+
+```bash
+./amd/experiment_2/run.sh
+```
+
+Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
+
+**Result:** After running for 24h on each page fault class and contract, no violation is found. 
