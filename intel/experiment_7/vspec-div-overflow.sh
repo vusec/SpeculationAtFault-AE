@@ -17,5 +17,5 @@ results=$SCRIPT_DIR/results
 mkdir -p $results
 
 logfile="$SCRIPT_DIR/results/div-overflow-$timestamp.log"
-echo "[+] Fuzzing #DE (overflow) with vspec-overflow; Log at $logfile"
+echo "[+] Fuzzing #DE (overflow) with vspec-NI; Log at $logfile"
 rvzr fuzz -s $instructions -c  $SCRIPT_DIR/div-overflow.yaml -i 100 -n 100000000 --timeout $TIMEOUT  -w $SCRIPT_DIR/results/violations/ &> $logfile

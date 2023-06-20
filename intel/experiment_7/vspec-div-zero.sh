@@ -2,7 +2,7 @@
 
 set -e
 
-contract="vspec-div-zero"
+contract="vspec-NI"
 
 SCRIPT=$(realpath $0)
 SCRIPT_DIR=$(dirname $SCRIPT)

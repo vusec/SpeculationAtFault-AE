@@ -43,6 +43,6 @@ logging_modes:
   - dbg_violation
 contract_observation_clause: ct
 contract_execution_clause:
-  - div-overflow
+  - div-zero
 permitted_faults:
   - DE-overflow
