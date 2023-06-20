@@ -165,7 +165,7 @@ We split our experiments according to the type of machine under test.
 
 ### How-to:
 This artifact has one directory for each experiment and architecture.
-For example, the scripts to run *Experiment 1* on Intel CPUs are stored inside \code{./intel/experiment\_1/}.
+For example, the scripts to run *Experiment 1* on Intel CPUs are stored inside `./intel/experiment_1/`.
 
 The scripts produce log files that are store inside a `results` subdirectory (e.g., `./intel/experiment_1/results/` for *Experiment 1* on Intel).
 
