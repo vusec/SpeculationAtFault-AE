@@ -9,8 +9,13 @@ By overwriting the OS-defined IDT, the executor suppresses the handling of excep
 The fuzzer executes randomly generated programs in kernel space, intended to throw exceptions. Even though the executor provides a stable and isolated environment, it may adversely affect the stability of your system.
 
 ### Hardware Requirements
+Evaluating this artifact requires at least one physical machine with root access.
+Ideally the reviewer has access to both one machine with Intel (KabyLake or CoffeeLake) and AMD (Zen+ or Zen3) CPU.
 
-The artifact requires at least one physical machine with an Intel CPU and one physical machine with AMD CPU. Root access is required.
+If only one such machine is available, the experiments can still be reproduced for just that machine. 
+For AMD Zen2, we expect to obtain the same results as for Zen3.
+
+To obtain stable results, the machine(s) should not be actively used by any other software.
 
 ### Software Requirements
 
@@ -149,3 +154,15 @@ The results can be summarized in the following claims:
 - **C4** - ucode-assists comply with *CT-SEQ* on AMD and with CT*-VS-All* on Intel (*CT-VS-NI* on CoffeeLake).
 - **C5** - #DE complies with *CT-VS-Ops* on Intel and AMD Zen3, and with *CT-VS-All* on AMD Zen+.
 - **C6** - #UD, #DB, and #BP comply with *CT-SEQ* on all machines. 
+
+### Experiments
+Our experiments serve two purposes: (1) validating our claims regarding which contract satisfies which exception on which machine, and (2) confirming Revizor's effectiveness in generating counterexamples.
+For each exception, we therefore propose one experiment that validates the correct contract and one experiment that finds a counterexample for the next more restrictive contract (if one exists).
+Each experiments runs for 24h or until a violation is found.
+Remember though that Revizor is based on random testing,  it is thus possible (but unlikely) that a violation is not found within 24h.
+If this is the case, we suggest to repeat the experiment.
+We split our experiments according to the type of machine under test. 
+
+#### Intel
+
+#### AMD
