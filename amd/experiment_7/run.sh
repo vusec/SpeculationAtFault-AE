@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-./run-div-overflow.sh
-./run-div-zero.sh
+./vspec-all-div-overflow.sh
+./vspec-all-div-zero.sh

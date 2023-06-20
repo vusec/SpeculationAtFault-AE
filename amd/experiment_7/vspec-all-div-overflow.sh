@@ -2,7 +2,7 @@
 
 set -e
 
-contract="vspec-ops"
+contract="vspec-all-div"
 
 SCRIPT=$(realpath $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
@@ -18,6 +18,6 @@ timestamp=$(date '+%y-%m-%d-%H-%M')
 results=$SCRIPT_DIR/results
 mkdir -p $results
 
-logfile="$SCRIPT_DIR/results/vspec-ops-div-overflow-$timestamp.log"
+logfile="$SCRIPT_DIR/results/vspec-all-div-overflow-$timestamp.log"
 echo "[+] Fuzzing #DE (overflow) with $contract; Log at $logfile"
-rvzr fuzz -s $instructions -c  $SCRIPT_DIR/vspec-ops-div-overflow.yaml -i 100 -n 100000000 --timeout $TIMEOUT  -w $SCRIPT_DIR/results/violations/ &> $logfile
+rvzr fuzz -s $instructions -c  $SCRIPT_DIR/vspec-all-div-overflow.yaml -i 100 -n 100000000 --timeout $TIMEOUT  -w $SCRIPT_DIR/results/violations/ &> $logfile
