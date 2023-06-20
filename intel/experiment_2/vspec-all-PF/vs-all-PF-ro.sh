@@ -2,7 +2,7 @@
 
 set -e
 
-contract="vspec-all"
+contract="CT-VS-All"
 
 SCRIPT=$(realpath $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
