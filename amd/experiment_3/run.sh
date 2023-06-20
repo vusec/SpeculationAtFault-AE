@@ -20,4 +20,4 @@ mkdir -p $results
 
 logfile="$SCRIPT_DIR/results/dh-GP-$timestamp.log"
 echo "[+] Fuzzing #GP (non-canonical memory accesses) with $contract; Log at $logfile"
-python $revizor_src/revizor.py fuzz -s $instructions -c  $SCRIPT_DIR/dh-GP.yaml -i 100 -n 100000000 --timeout $TIMEOUT  -w $SCRIPT_DIR/results/violations/ &> $logfile
+rvzr fuzz -s $instructions -c  $SCRIPT_DIR/dh-GP.yaml -i 100 -n 100000000 --timeout $TIMEOUT  -w $SCRIPT_DIR/results/violations/ &> $logfile
