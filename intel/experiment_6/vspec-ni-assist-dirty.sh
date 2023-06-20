@@ -2,7 +2,7 @@
 
 set -e
 
-contract="vspec-all"
+contract="vspec-NI"
 
 SCRIPT=$(realpath $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
@@ -22,15 +22,6 @@ cp $SCRIPT_DIR/assist-dirty.yaml $SCRIPT_DIR/assist-dirty-NI.yaml
 echo ""                               >> $SCRIPT_DIR/assist-dirty-NI.yaml
 echo "contract_execution_clause:"     >> $SCRIPT_DIR/assist-dirty-NI.yaml
 echo "  - nullinj-assist"    >> $SCRIPT_DIR/assist-dirty-NI.yaml
-
-cp $SCRIPT_DIR/assist-accessed.yaml $SCRIPT_DIR/assist-accessed-NI.yaml
-echo ""                               >> $SCRIPT_DIR/assist-accessed-NI.yaml
-echo "contract_execution_clause:"     >> $SCRIPT_DIR/assist-accessed-NI.yaml
-echo "  - nullinj-assist"    >> $SCRIPT_DIR/assist-accessed-NI.yaml
-
-logfile="$SCRIPT_DIR/results/assist-accessed-dh-$timestamp.log"
-echo "[+] Fuzzing ucode-assist (accessed bit) with $contract; Log at $logfile"
-python $revizor_src/revizor.py fuzz -s $instructions -c  $SCRIPT_DIR/assist-accessed-NI.yaml -i 100 -n 100000000 --timeout $TIMEOUT  -w $SCRIPT_DIR/results/violations/ &> $logfile
 
 logfile="$SCRIPT_DIR/results/assist-dirty-dh-$timestamp.log"
 echo "[+] Fuzzing ucode-assist (dirty bit) with $contract; Log at $logfile"

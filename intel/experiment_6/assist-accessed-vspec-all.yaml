@@ -47,3 +47,6 @@ contract_observation_clause: ct
 
 permitted_faults:
   - assist-accessed
+
+contract_execution_clause:
+  - vspec-all-memory-assists

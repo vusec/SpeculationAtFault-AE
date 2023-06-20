@@ -44,8 +44,7 @@ logging_modes:
   - stat
   - dbg_violation
 contract_observation_clause: ct
-# contract_execution_clause:
-#   - delayed-exception-handling
+
 permitted_faults:
   - assist-accessed
 contract_execution_clause:

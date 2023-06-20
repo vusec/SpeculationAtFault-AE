@@ -46,4 +46,6 @@ logging_modes:
 contract_observation_clause: ct
 
 permitted_faults:
-  - assist-accessed
+  - assist-dirty
+contract_execution_clause:
+  -vspec-all-memory-assists
