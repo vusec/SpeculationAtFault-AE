@@ -167,40 +167,41 @@ We split our experiments according to the type of machine under test.
 This artifact has one directory for each experiment and architecture.
 For example, the scripts to run *Experiment 1* on Intel CPUs are stored inside `./intel/experiment_1/`.
 
-The scripts produce log files that are store inside a `results` subdirectory (e.g., `./intel/experiment_1/results/` for *Experiment 1* on Intel).
+The scripts stores log files inside `results/` in the experiment's directory (e.g., `./intel/experiment_1/results/` for *Experiment 1* on Intel).
 
-### Experiment 1
+### Intel
 
-#### Intel
+#### Experiment 1
 
 ```bash
 ./intel/experiment_1/run.sh
 ```
-
 Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
 
-#### AMD
-```bash
-./amd/experiment_1/run.sh
-```
-Test each page fault class (invalid, read-only, SMAP) against *CT-SEQ*.
+**Result:** violation (for all classes)
 
-**Result:** Revizors finds a violation for each page fault class and contract. You can find a report in the log files in the `results` subdirectory.
-
-### Experiment 2
-#### Intel
+#### Experiment 2
 
 ```bash
 ./intel/experiment_2/run.sh
 ```
-Test each page fault class (invalid, read-only, SMAP) against *CT-VSPEC-All*.
+Test each page fault class (invalid, read-only, SMAP) against *CT-VS-NI* on CoffeeLake (and newer), resp. against *CT-VS-All* (on KabyLake and older).
 
-#### AMD
+**Result:** no violation. 
 
+
+#### Experiment 3
 ```bash
-./amd/experiment_2/run.sh
+./intel/experiment_3/run.sh
+```
+Test #GP (i.e., non-canonical memory accesses) against *CT-VS-All*
 ```
 
-Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
+**Result:** violation. Due to the complexity of the contract, finding a violation may take several hours (it was 11h when we ran the experiment).
 
-**Result:** After running for 24h on each page fault class and contract, no violation is found. 
+#### Experiment 4
+#### Experiment 5
+#### Experiment 6
+#### Experiment 7
+#### Experiment 8
+#### Experiment 9
