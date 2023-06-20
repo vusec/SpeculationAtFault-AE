@@ -172,16 +172,15 @@ The scripts stores log files inside `results/` in the experiment's directory (e.
 ### Intel
 
 #### Experiment 1 (C1 - page faults - violation) [1/2 machine hours]
+Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
 
 ```bash
 ./intel/experiment_1/run.sh
 ```
-Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
 
 **Result:** violation (for all classes)
 
 #### Experiment 2 (C1 - page faults - correct) [72 machine hours]
-
 Test each page fault class (invalid, read-only, SMAP) against *CT-VS-NI* on CoffeeLake (and newer), resp. against *CT-VS-All* (on KabyLake and older).
 
 On CoffeeLake (and newer):
@@ -196,18 +195,45 @@ On KabyLake (and older)
 **Result:** no violation. 
 
 #### Experiment 3 (C2 - non-canonical accesses -  violation) [24 machine hours]
+Test #GP (i.e., non-canonical memory accesses) against *CT-VS-All*
+
 ```bash
 ./intel/experiment_3/run.sh
-```
-Test #GP (i.e., non-canonical memory accesses) against *CT-VS-All*
 ```
 
 **Result:** violation. Due to the complexity of the contract, finding a violation may take several hours (it was 11h when we ran the experiment).
 
-#### Experiment 4
+#### Experiment 4 (C3 - Mpx - correct) [24 machine hours]
+ Test MPX against &CT-DH*
 
-#### Experiment 5
-#### Experiment 6
+```bash
+./intel/experiment_4/run.sh
+```
+**Result:** no violation. 
+
+#### Experiment 5 (C4 - ucode-assists - violation) [1/6 machine hours]
+ Test both variants of ucode assists (Access bit and Dirty bit) against *CT-DH*.
+
+```bash
+./intel/experiment_5/run.sh
+```
+
+**Result:** violation (for both variants)
+
+#### Experiment 6 (C4 - ucode-assists - correct} [48 machine hours] 
+Fuzz both variants against *CT-VS-NI* on CoffeeLake (and newer), resp. against *CT-VS-All* (on KabyLake and older).
+
+On CoffeeLake (and newer):
+```bash
+./intel/experiment_6/vs-ni-assist/run.sh
+```
+On KabyLake (and older)
+```bash
+./intel/experiment_6/vs-all-assist/run.sh
+```
+
+**Result:** no violation.
+
 #### Experiment 7
 #### Experiment 8
 #### Experiment 9
