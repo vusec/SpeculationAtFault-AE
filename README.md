@@ -139,4 +139,13 @@ Finished at 13:14:43
 ```
 
 
-## Experiments
+## Claims
+The main results are reported in Table 1 of the original paper.
+The results can be summarized in the following claims:
+
+- **C1** - \#PF complies with *CT-VS-All* on Intel *CT-VS-NI* on CoffeeLake) and with *CT-DH* on AMD.
+- **C2** - #GP complies with *CT-VS-CI* on AMD. On Intel, #GP does not satisfy any contract.
+- **C3** - (Intel only) #BR complies with *CT-DH*. (E5)
+- **C4** - ucode-assists comply with *CT-SEQ* on AMD and with CT*-VS-All* on Intel (*CT-VS-NI* on CoffeeLake).
+- **C5** - #DE complies with *CT-VS-Ops* on Intel and AMD Zen3, and with *CT-VS-All* on AMD Zen+.
+- **C6** - #UD, #DB, and #BP comply with *CT-SEQ* on all machines. 
