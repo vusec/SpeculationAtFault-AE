@@ -234,6 +234,27 @@ On KabyLake (and older)
 
 **Result:** no violation.
 
-#### Experiment 7
-#### Experiment 8
-#### Experiment 9
+#### Experiment 7 (C5 - division - violation) [2 machine hours] 
+Test both types of division errors (divide-by-zero and division overflow) against *CT-VS-NI*
+
+```bash
+./intel/experiment_7/run.sh
+```
+**Result:** violation (for both variants)
+
+#### Experiment 8 (C5 - division - correct) [48 machine hours] 
+Test both types of division errors (divide-by-zero and division overflow) against *CT-VS-Ops*.
+
+```bash
+./intel/experiment_8/run.sh
+```
+**Result:** no violation.
+
+#### Experiment 9 (C6 - others - correct) [72 machine hours]
+Test #UD, #DB and #BP against *CT-SEQ*. 
+
+```bash
+./intel/experiment_9/run.sh
+```
+
+**Result:** no violation.
