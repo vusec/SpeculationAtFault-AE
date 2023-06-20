@@ -1,4 +1,5 @@
 *.json
 *.asm
 *.o
+*.log
 ./**/results/
