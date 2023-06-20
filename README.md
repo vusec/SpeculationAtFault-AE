@@ -89,7 +89,7 @@ rvzr download_spec -a x86-64 --extensions BASE SSE SSE2 CLFLUSHOPT CLFSH MPX --o
 From the base directory, try to run:
 
 ```bash
-rvzr fuzz -s sca-fuzzer/base.json -c basic/seq-BP.yaml -i 10 -n 100
+rvzr fuzz -s base.json -c basic/seq-BP.yaml -i 10 -n 100
 ```
 
 This command will start a small fuzzing campaign testing the *Breakpoint* with 100 test cases, each tested with 10 inputs.
@@ -98,13 +98,13 @@ The command is expected to terminate without reporting a violation.
 Now, try the following command to fuzz page faults (#PF):
 
 ```bash
-rvzr fuzz -s sca-fuzzer/base.json -c basic/seq-PF.yaml  -i 100 -n 100000000
+rvzr fuzz -s base.json -c basic/seq-PF.yaml  -i 100 -n 100000000
 ```
 
 Revizor should exit and report a violation after few seconds:
 
 ```bash
-> Validating violation...> Priming  47             
+> Validating violation...> Priming  47s             
 
 ================================ Violations detected ==========================
 Contract trace:
@@ -139,4 +139,13 @@ Finished at 13:14:43
 ```
 
 
-## Experiments
+## Claims
+The main results are reported in Table 1 of the original paper.
+The results can be summarized in the following claims:
+
+- **C1** - \#PF complies with *CT-VS-All* on Intel *CT-VS-NI* on CoffeeLake) and with *CT-DH* on AMD.
+- **C2** - #GP complies with *CT-VS-CI* on AMD. On Intel, #GP does not satisfy any contract.
+- **C3** - (Intel only) #BR complies with *CT-DH*. (E5)
+- **C4** - ucode-assists comply with *CT-SEQ* on AMD and with CT*-VS-All* on Intel (*CT-VS-NI* on CoffeeLake).
+- **C5** - #DE complies with *CT-VS-Ops* on Intel and AMD Zen3, and with *CT-VS-All* on AMD Zen+.
+- **C6** - #UD, #DB, and #BP comply with *CT-SEQ* on all machines. 
