@@ -10,7 +10,6 @@ TIMEOUT=$(( 24 * 3600 ))
 
 WORK_DIR=$(realpath $SCRIPT_DIR/../../)
 
-
 instructions="$WORK_DIR/base.json"
 timestamp=$(date '+%y-%m-%d-%H-%M')
 
