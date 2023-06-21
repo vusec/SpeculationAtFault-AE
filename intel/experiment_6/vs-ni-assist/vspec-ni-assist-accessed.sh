@@ -25,7 +25,7 @@ shift $((OPTIND-1)) # remove parsed options and args from $@ list
 echo "Timeout=$TIMEOUT (seconds)"
 
 WORK_DIR=$(realpath $SCRIPT_DIR/../../..)
-echo "HOME=$WORK_DIR"
+
 
 
 instructions="$WORK_DIR/base.json"
