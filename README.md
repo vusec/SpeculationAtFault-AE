@@ -184,10 +184,13 @@ If this is the case, we suggest to repeat the experiment.
 We split our experiments according to the type of machine under test. 
 
 ### How-to: <a name="how-to"/>
-This artifact has one directory for each experiment and architecture.
-For example, the scripts to run *Experiment 1* on Intel CPUs are stored inside `./intel/experiment_1/`.
+We split our experiments according to the type of machine under test.
+Scripts for the experiments are grouped into a directory for Intel and one for AMD.
+The scripts  will create a subdirectory `results` inside the experiment directory where logs are stored.  
+When the script terminates, you can inspect the log to determine whether Revizor detected a violation.
+Violations (if any) are stored in subdirectories inside *results/violations/*.  
+Each violation directory will contain the program, the inputs, and the configuration file.
 
-The scripts stores log files inside `results/` in the experiment's directory (e.g., `./intel/experiment_1/results/` for *Experiment 1* on Intel).
 
 ### Intel <a name="intel"/>
 
