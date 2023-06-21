@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-./dh-PF-present.sh
-./dh-PF-ro.sh
-./dh-PF-smap.sh
+./dh-PF-present.sh $1
+./dh-PF-ro.sh $1
+./dh-PF-smap.sh $1
