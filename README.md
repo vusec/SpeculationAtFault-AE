@@ -178,21 +178,39 @@ The results can be summarized in the following claims:
 ### Experiments design
 Our experiments serve two purposes: (1) validating our claims regarding which contract satisfies which exception on which machine, and (2) confirming Revizor's effectiveness in generating counterexamples.
 For each exception, we therefore propose one experiment that validates the correct contract and one experiment that finds a counterexample for the next more restrictive contract (if one exists).
-Each experiments runs for 24h or until a violation is found.
-Remember though that Revizor is based on random testing,  it is thus possible (but unlikely) that a violation is not found within 24h.
-If this is the case, we suggest to repeat the experiment.
-We split our experiments according to the type of machine under test. 
+
+In the interest of time, we run each experiment for 12h or until a violation is found.
+The timeout can be increased with the *--timeout* option we included in the scripts.
+For our paper, each experiment ran for 24h.
+Remember though that Revizor is based on random testing,  it is thus possible that a violation is not found within 12h.
+If this is the case, we suggest to repeat the experiment and increase the timeout.
 
 ### How-to: <a name="how-to"/>
 We split our experiments according to the type of machine under test.
 Scripts for the experiments are grouped into a directory for Intel and one for AMD.
-The scripts  will create a subdirectory `results` inside the experiment directory where logs are stored.  
+
+Inside each directory, there is one `run.sh` script to start the experiment
+An optional timeout (given in seconds) can be set with the `--timeout` option (e.g., `./run.sh --timeout 86400` for a 24h timeout).
+
+Running the script will create a subdirectory  `results` inside the experiment directory, where logs are stored
 When the script terminates, you can inspect the log to determine whether Revizor detected a violation.
 Violations (if any) are stored in subdirectories inside *results/violations/*.  
 Each violation directory will contain the program, the inputs, and the configuration file.
 
 
 ### Intel <a name="intel"/>
+To run all the experiments with a signle command:
+
+```bash
+./run-intel.sh
+````
+
+Each test runs for 12h by default. 
+You can use the *--timeout* option to pass a different argument to Revizor:
+
+```bash
+./run-intel.sh --timeout=8600
+````
 
 #### Experiment 1 (C1 - page faults - violation) [1/2 machine hours]
 Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
@@ -200,10 +218,15 @@ Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
 ```bash
 ./intel/experiment_1/run.sh
 ```
+Alternatively, for a longer run (24h):
+
+```bash
+./intel/experiment_1/run.sh --timeout=8600
+```
 
 **Result:** violation (for all classes)
 
-#### Experiment 2 (C1 - page faults - correct) [72 machine hours]
+#### Experiment 2 (C1 - page faults - correct) [36 machine hours]
 Test each page fault class (invalid, read-only, SMAP) against *CT-VS-NI* on CoffeeLake (and newer), resp. against *CT-VS-All* (on KabyLake and older).
 
 On CoffeeLake (and newer):
@@ -217,7 +240,7 @@ On KabyLake (and older)
 
 **Result:** no violation. 
 
-#### Experiment 3 (C2 - non-canonical accesses -  violation) [24 machine hours]
+#### Experiment 3 (C2 - non-canonical accesses -  violation) [12 machine hours]
 Test #GP (i.e., non-canonical memory accesses) against *CT-VS-All*
 
 ```bash
@@ -243,7 +266,7 @@ Test #GP (i.e., non-canonical memory accesses) against *CT-VS-All*
 
 **Result:** violation (for both variants)
 
-#### Experiment 6 (C4 - ucode-assists - correct} [48 machine hours] 
+#### Experiment 6 (C4 - ucode-assists - correct} [24 machine hours] 
 Fuzz both variants against *CT-VS-NI* on CoffeeLake (and newer), resp. against *CT-VS-All* (on KabyLake and older).
 
 On CoffeeLake (and newer):
@@ -265,7 +288,7 @@ Test both types of division errors (divide-by-zero and division overflow) agains
 ```
 **Result:** violation (for both variants)
 
-#### Experiment 8 (C5 - division - correct) [48 machine hours] 
+#### Experiment 8 (C5 - division - correct) [24 machine hours] 
 Test both types of division errors (divide-by-zero and division overflow) against *CT-VS-Ops*.
 
 ```bash
@@ -273,7 +296,7 @@ Test both types of division errors (divide-by-zero and division overflow) agains
 ```
 **Result:** no violation.
 
-#### Experiment 9 (C6 - others - correct) [72 machine hours]
+#### Experiment 9 (C6 - others - correct) [36 machine hours]
 Test #UD, #DB and #BP against *CT-SEQ*. 
 
 ```bash
@@ -292,7 +315,7 @@ Test each page fault class (invalid, read-only, SMAP) against *CT-SEQ*.
 
 **Result:** violation (for all classes).
 
-#### Experiment 2 (C1 - page faults - correct) [72 machine hours]
+#### Experiment 2 (C1 - page faults - correct) [36 machine hours]
 Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
 
 ```bash
@@ -308,7 +331,7 @@ Test non-canonical accesses against *CT-DH*.
 ```
 **Result:** violation.
 
-#### Experiment 4 (C2 - non-canonical accesses) -  correct} [24 machine hours]
+#### Experiment 4 (C2 - non-canonical accesses) -  correct} [12 machine hours]
 Test non-canonical accesses against *CT-VS-CI*.
 
 ```bash
@@ -317,7 +340,7 @@ Test non-canonical accesses against *CT-VS-CI*.
 **Result:** no violation.
 
 
-#### Experiment 5 (C4 - ucode-assists - correct) [48 machine hours]
+#### Experiment 5 (C4 - ucode-assists - correct) [24 machine hours]
 Test both variants (Access bit and Dirty bit) against *CT-SEQ*.
  
 ```bash
@@ -334,7 +357,7 @@ Test both variants (Access bit and Dirty bit) against *CT-SEQ*.
 **Result:** no violation (for both variants).
 
 
-#### Experiment 7 (C5 - division by zero - correct) [24 machine hours]
+#### Experiment 7 (C5 - division by zero - correct) [12 machine hours]
 Test division-by-zero errors against *CT-VS-Ops* on Zen3 (or newer), resp. against *CT-VS-All* on Zen+ (or older). 
 For Zen2 (which was not part of our setup), we expect *CT-VS-Ops* to hold as well.
 
@@ -350,14 +373,14 @@ On Zen+ (and older):
 **Result:** no violation.
 
 
-#### Experiment 8 (C5 - division overflow - correct) [24 machine hours]
+#### Experiment 8 (C5 - division overflow - correct) [12 machine hours]
 Test division overflows against *CT-VS-Ops*.
 ```bash
 ./amd/experiment_8/run.sh
 ```
 **Result:** no violation.
 
-#### Experiment 9 (C6 - others - correct) [72 machine hours]
+#### Experiment 9 (C6 - others - correct) [36 machine hours]
 
 ```bash
 ./amd/experiment_9/run.sh
