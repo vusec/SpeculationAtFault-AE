@@ -306,6 +306,16 @@ Test #UD, #DB and #BP against *CT-SEQ*.
 **Result:** no violation.
 
 ### AMD <a name="amd"/>
+To run all the experiments with a single command:
+```bash
+./run-amd.sh
+```
+or to run each test for 24h: 
+
+```bash
+./run-amd.sh --timeout=8600
+````
+
 #### Experiment 1 (C1 - page faults - violation) [1/6 machine hours]: 
 Test each page fault class (invalid, read-only, SMAP) against *CT-SEQ*.
 
