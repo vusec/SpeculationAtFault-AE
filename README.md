@@ -1,6 +1,9 @@
 # Artifact Evaluation Submission [Usenix'23]
 
-**Paper:** "Speculation at Fault: Modeling and Testing Microarchitectural Leakage of CPU Exceptions"
+**Paper under embargo:** "Speculation at Fault: Modeling and Testing Microarchitectural Leakage of CPU Exceptions"
+
+*The paper is available for artifact evaluation on hotcrp. 
+After the embargo is lifted, a link to the paper's pdf will be available here.*
 
 ### Table of Contents  
 - [How to Install](#requirements)  
