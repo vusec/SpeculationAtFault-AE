@@ -117,7 +117,7 @@ From the base directory, try to run:
 rvzr fuzz -s base.json -c basic/seq-BP.yaml -i 10 -n 100
 ```
 
-This command will start a small fuzzing campaign testing the *Breakpoint* with 100 test cases, each tested with 10 inputs.
+This command will start a small fuzzing campaign testing breakpoint exceptions with 100 test cases, each tested with 10 inputs.
 The command is expected to terminate without reporting a violation.
 
 Now, try the following command to fuzz page faults (#PF):
@@ -168,10 +168,10 @@ Finished at 13:14:43
 The main results are reported in Table 1 of the original paper.
 The results can be summarized in the following claims:
 
-- **C1** - \#PF complies with *CT-VS-All* on Intel *CT-VS-NI* on CoffeeLake) and with *CT-DH* on AMD.
+- **C1** - #PF complies with *CT-VS-All* on Intel Kaby Lake, with *CT-VS-NI* on Intel CoffeeLake, and with *CT-DH* on AMD.
 - **C2** - #GP complies with *CT-VS-CI* on AMD. On Intel, #GP does not satisfy any contract.
 - **C3** - (Intel only) #BR complies with *CT-DH*. (E5)
-- **C4** - ucode-assists comply with *CT-SEQ* on AMD and with CT*-VS-All* on Intel (*CT-VS-NI* on CoffeeLake).
+- **C4** - ucode-assists comply with *CT-SEQ* on AMD and with *CT-VS-All* on Intel (*CT-VS-NI* on CoffeeLake).
 - **C5** - #DE complies with *CT-VS-Ops* on Intel and AMD Zen3, and with *CT-VS-All* on AMD Zen+.
 - **C6** - #UD, #DB, and #BP comply with *CT-SEQ* on all machines. 
 
@@ -227,7 +227,7 @@ Test #GP (i.e., non-canonical memory accesses) against *CT-VS-All*
 **Result:** violation. Due to the complexity of the contract, finding a violation may take several hours (it was 11h when we ran the experiment).
 
 #### Experiment 4 (C3 - Mpx - correct) [24 machine hours]
- Test MPX against &CT-DH*
+ Test MPX against *CT-DH*.
 
 ```bash
 ./intel/experiment_4/run.sh
@@ -300,7 +300,7 @@ Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
 ```
 **Result:** no violation (for all classes).
 
-#### Experiment 3 (C2 - non-canonical accesses) -  violation} [1/12 machine hours]
+#### Experiment 3 (C2 - non-canonical accesses -  violation) [1/12 machine hours]
 Test non-canonical accesses against *CT-DH*.
 
 ```bash
@@ -318,7 +318,7 @@ Test non-canonical accesses against *CT-VS-CI*.
 
 
 #### Experiment 5 (C4 - ucode-assists - correct) [48 machine hours]
- Fuzz both variants (Access bit and Dirty bit) against *CT-SEQ*.
+Test both variants (Access bit and Dirty bit) against *CT-SEQ*.
  
 ```bash
 ./amd/experiment_5/run.sh
