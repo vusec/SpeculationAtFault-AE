@@ -6,7 +6,7 @@ contract="vspec-ops"
 
 SCRIPT=$(realpath $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
-TIMEOUT=$(( 24 * 3600 ))
+TIMEOUT=$(( 12 * 3600 ))
 die() { echo "$*" >&2; exit 2; }
 while getopts t:-: OPT; do
   # support long options: https://stackoverflow.com/a/28466267/519360
