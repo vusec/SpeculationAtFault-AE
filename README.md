@@ -53,6 +53,14 @@ Create a virtual environment:
 ```
 # On Ubuntu
 python3 -m venv ~/venv-revizor
+```
+Alternatively, use virtualenv:
+```
+python3 -m virtualenv ~/venv-revizor
+```
+
+and activate the virtual environment
+```
 source ~/venv-revizor/bin/activate
 ```
 
@@ -172,16 +180,15 @@ The scripts stores log files inside `results/` in the experiment's directory (e.
 ### Intel
 
 #### Experiment 1 (C1 - page faults - violation) [1/2 machine hours]
+Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
 
 ```bash
 ./intel/experiment_1/run.sh
 ```
-Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
 
 **Result:** violation (for all classes)
 
 #### Experiment 2 (C1 - page faults - correct) [72 machine hours]
-
 Test each page fault class (invalid, read-only, SMAP) against *CT-VS-NI* on CoffeeLake (and newer), resp. against *CT-VS-All* (on KabyLake and older).
 
 On CoffeeLake (and newer):
@@ -196,18 +203,148 @@ On KabyLake (and older)
 **Result:** no violation. 
 
 #### Experiment 3 (C2 - non-canonical accesses -  violation) [24 machine hours]
+Test #GP (i.e., non-canonical memory accesses) against *CT-VS-All*
+
 ```bash
 ./intel/experiment_3/run.sh
-```
-Test #GP (i.e., non-canonical memory accesses) against *CT-VS-All*
 ```
 
 **Result:** violation. Due to the complexity of the contract, finding a violation may take several hours (it was 11h when we ran the experiment).
 
-#### Experiment 4
+#### Experiment 4 (C3 - Mpx - correct) [24 machine hours]
+ Test MPX against &CT-DH*
 
-#### Experiment 5
-#### Experiment 6
-#### Experiment 7
-#### Experiment 8
-#### Experiment 9
+```bash
+./intel/experiment_4/run.sh
+```
+**Result:** no violation. 
+
+#### Experiment 5 (C4 - ucode-assists - violation) [1/6 machine hours]
+ Test both variants of ucode assists (Access bit and Dirty bit) against *CT-DH*.
+
+```bash
+./intel/experiment_5/run.sh
+```
+
+**Result:** violation (for both variants)
+
+#### Experiment 6 (C4 - ucode-assists - correct} [48 machine hours] 
+Fuzz both variants against *CT-VS-NI* on CoffeeLake (and newer), resp. against *CT-VS-All* (on KabyLake and older).
+
+On CoffeeLake (and newer):
+```bash
+./intel/experiment_6/vs-ni-assist/run.sh
+```
+On KabyLake (and older)
+```bash
+./intel/experiment_6/vs-all-assist/run.sh
+```
+
+**Result:** no violation.
+
+#### Experiment 7 (C5 - division - violation) [2 machine hours] 
+Test both types of division errors (divide-by-zero and division overflow) against *CT-VS-NI*
+
+```bash
+./intel/experiment_7/run.sh
+```
+**Result:** violation (for both variants)
+
+#### Experiment 8 (C5 - division - correct) [48 machine hours] 
+Test both types of division errors (divide-by-zero and division overflow) against *CT-VS-Ops*.
+
+```bash
+./intel/experiment_8/run.sh
+```
+**Result:** no violation.
+
+#### Experiment 9 (C6 - others - correct) [72 machine hours]
+Test #UD, #DB and #BP against *CT-SEQ*. 
+
+```bash
+./intel/experiment_9/run.sh
+```
+
+**Result:** no violation.
+
+### AMD
+#### Experiment 1 (C1 - page faults - violation) [1/6 machine hours]: 
+Test each page fault class (invalid, read-only, SMAP) against *CT-SEQ*.
+
+```bash
+./amd/experiment_1/run.sh
+```
+
+**Result:** violation (for all classes).
+
+#### Experiment 2 (C1 - page faults - correct) [72 machine hours]
+Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
+
+```bash
+./amd/experiment_2/run.sh
+```
+**Result:** no violation (for all classes).
+
+#### Experiment 3 (C2 - non-canonical accesses) -  violation} [1/12 machine hours]
+Test non-canonical accesses against *CT-DH*.
+
+```bash
+./amd/experiment_3/run.sh
+```
+**Result:** violation.
+
+#### Experiment 4 (C2 - non-canonical accesses) -  correct} [24 machine hours]
+Test non-canonical accesses against *CT-VS-CI*.
+
+```bash
+./amd/experiment_4/run.sh
+```
+**Result:** no violation.
+
+
+#### Experiment 5 (C4 - ucode-assists - correct) [48 machine hours]
+ Fuzz both variants (Access bit and Dirty bit) against *CT-SEQ*.
+ 
+```bash
+./amd/experiment_5/run.sh
+```
+**Result:** no violation.
+
+#### Experiment 6 (C5 - division - violation) [2 machine hours]
+ Test both type of division errors (divide-by-zero and division overflow) against *CT-VS-NI*.
+
+```bash
+./amd/experiment_6/run.sh
+```
+**Result:** no violation (for both variants).
+
+
+#### Experiment 7 (C5 - division by zero - correct) [24 machine hours]
+Test division-by-zero errors against *CT-VS-Ops* on Zen3 (or newer), resp. against *CT-VS-All* on Zen+ (or older). 
+For Zen2 (which was not part of our setup), we expect *CT-VS-Ops* to hold as well.
+
+On AMD Zen2 and Zen3:
+```bash
+./amd/experiment_7/run-vspec-ops.sh
+```
+
+On Zen+ (and older):
+```bash
+./amd/experiment_7/run-vspec-all.sh
+```
+**Result:** no violation.
+
+
+#### Experiment 8 (C5 - division overflow - correct) [24 machine hours]
+Test division overflows against *CT-VS-Ops*.
+```bash
+./amd/experiment_8/run.sh
+```
+**Result:** no violation.
+
+#### Experiment 9 (C6 - others - correct) [72 machine hours]
+
+```bash
+./amd/experiment_9/run.sh
+```
+**Result:** no violation.
