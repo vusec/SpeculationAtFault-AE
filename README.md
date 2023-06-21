@@ -2,13 +2,25 @@
 
 **Paper:** "Speculation at Fault: Modeling and Testing Microarchitectural Leakage of CPU Exceptions"
 
-## Requirements & Dependencies
+### Table of Contents  
+- [How to Install](#requirements)  
+   - [Hardware requirements](#hw-requirements)
+   - [Software requirements](#sw-requirements)
+   - [System configuration](#configuration)
+   - [Installation](#install)
+   - [Basic Usability Test](#basic-test)
+- [Claims & Experiments](#claims)
+   - [Experiments Intel](#intel)
+   - [Experiments AMD](#amd) 
+
+
+## How to Install <a name="requirements"/>
 
 The fuzzer includes a kernel module that implements the executor. The executor sets MSR registers in order to disable the hardware prefetcher amd performance counters. 
 By overwriting the OS-defined IDT, the executor suppresses the handling of exceptions on the running core. It is important to note that this may affect other jobs running on your system. 
 The fuzzer executes randomly generated programs in kernel space, intended to throw exceptions. Even though the executor provides a stable and isolated environment, it may adversely affect the stability of your system.
 
-### Hardware Requirements
+### Hardware Requirements  <a name="hw-requirements"/>
 Evaluating this artifact requires at least one physical machine with root access.
 Ideally the reviewer has access to both one machine with Intel (KabyLake or CoffeeLake) and AMD (Zen+ or Zen3) CPU.
 
@@ -17,7 +29,7 @@ For AMD Zen2, we expect to obtain the same results as for Zen3.
 
 To obtain stable results, the machine(s) should not be actively used by any other software.
 
-### Software Requirements
+### Software Requirements  <a name="sw-requirements"/>
 
 * Linux v5.1+
 * Linux Kernel Headers
@@ -40,11 +52,11 @@ Other Python modules are automatically installed. These include:
 * Python bindings to Unicorn:
 * Python packages `pyyaml`, `types-pyyaml`, `numpy`: -->
 
-### System Configuration
+### System Configuration  <a name="configuration"/>
 
 For more stable results, disable hyperthreading (there's usually a BIOS option for it).
 
-### Installing the Artifact (5 human-minutes + 5 compute-minuts)
+### Installing the Artifact (5 human-minutes + 5 compute-minuts)  <a name="install"/>
 
 1. Install Revizor Python Package
    
@@ -97,7 +109,7 @@ cd -
 rvzr download_spec -a x86-64 --extensions BASE SSE SSE2 CLFLUSHOPT CLFSH MPX --outfile base.json
 ```
 
-### Basic Usability Test
+### Basic Usability Test  <a name="basic-test"/>
 
 From the base directory, try to run:
 
@@ -152,7 +164,7 @@ Finished at 13:14:43
 ```
 
 
-## Claims & Experiments
+## Claims & Experiments  <a name="claims"/>
 The main results are reported in Table 1 of the original paper.
 The results can be summarized in the following claims:
 
@@ -171,13 +183,16 @@ Remember though that Revizor is based on random testing,  it is thus possible (b
 If this is the case, we suggest to repeat the experiment.
 We split our experiments according to the type of machine under test. 
 
-### How-to:
-This artifact has one directory for each experiment and architecture.
-For example, the scripts to run *Experiment 1* on Intel CPUs are stored inside `./intel/experiment_1/`.
+### How-to: <a name="how-to"/>
+We split our experiments according to the type of machine under test.
+Scripts for the experiments are grouped into a directory for Intel and one for AMD.
+The scripts  will create a subdirectory `results` inside the experiment directory where logs are stored.  
+When the script terminates, you can inspect the log to determine whether Revizor detected a violation.
+Violations (if any) are stored in subdirectories inside *results/violations/*.  
+Each violation directory will contain the program, the inputs, and the configuration file.
 
-The scripts stores log files inside `results/` in the experiment's directory (e.g., `./intel/experiment_1/results/` for *Experiment 1* on Intel).
 
-### Intel
+### Intel <a name="intel"/>
 
 #### Experiment 1 (C1 - page faults - violation) [1/2 machine hours]
 Test each page fault class (invalid, read-only, SMAP) against *CT-DH*.
@@ -267,7 +282,7 @@ Test #UD, #DB and #BP against *CT-SEQ*.
 
 **Result:** no violation.
 
-### AMD
+### AMD <a name="amd"/>
 #### Experiment 1 (C1 - page faults - violation) [1/6 machine hours]: 
 Test each page fault class (invalid, read-only, SMAP) against *CT-SEQ*.
 
