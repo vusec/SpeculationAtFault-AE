@@ -8,7 +8,7 @@ cd $SCRIPT_DIR/intel/experiment_1
 ./run.sh "$@"
 
 echo "======== Experiment 2 ========"
-if  grep -q "l1tf" /proc/cpuinfo || grep -q "mds" /proc/cpuinfo   ; then
+if  grep -q "l1tf" /proc/cpuinfo || grep -q "mds" /proc/cpuinfo  ; then
     cd $SCRIPT_DIR/intel/experiment_2/vs-all-PF/
     ./run.sh "$@"
 else
