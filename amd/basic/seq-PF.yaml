@@ -1,0 +1,44 @@
+instruction_categories:
+  - BASE-BINARY
+  - BASE-BITBYTE
+  - BASE-CONVERT
+  - BASE-DATAXFER
+  - BASE-FLAGOP
+  - BASE-LOGICAL
+  - BASE-MISC
+  - BASE-NOP
+  - BASE-POP
+  - BASE-PUSH
+  - BASE-SEMAPHORE
+  - BASE-SETCC
+  - BASE-INTERRUPT
+  - VTX-VTX
+  - SVM-SYSTEM
+
+x86_disable_div64: true  # 64-bit divisions are excluded to avoid triggering of ZDI (reported in Hide&Seek)
+x86_executor_enable_ssbp_patch: true  # SSBP patch is enabled to avoid triggering Spectre V4
+
+program_size: 32
+avg_mem_accesses: 8
+min_bb_per_function: 1
+max_bb_per_function: 1
+input_gen_entropy_bits: 24
+memory_access_zeroed_bits: 0
+inputs_per_class: 2
+executor_mode: PP+P
+executor: x86-64-amd
+
+enable_speculation_filter: true
+enable_observation_filter: false
+enable_priming: true
+ignore_flaky_violations: true
+
+logging_modes:
+  - info
+  - stat
+contract_observation_clause: ct
+
+contract_execution_clause:
+  - seq
+permitted_faults:
+  - PF-present
