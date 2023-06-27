@@ -3,3 +3,10 @@
 *.o
 *.log
 ./**/results/
+*.cmd
+*.cmd.c
+*.ko
+*.symvers
+*.mod
+*.mod.c
+*.order
