@@ -113,9 +113,17 @@ rvzr download_spec -a x86-64 --extensions BASE SSE SSE2 CLFLUSHOPT CLFSH MPX --o
 ```
 
 ### Basic Usability Test  <a name="basic-test"/>
+For Intel CPUs, move into the `intel` directory:
+```bash
+cd intel
+```
 
-From the base directory, try to run:
+Otherwise, on AMD: 
+```bash
+cd amd
+```
 
+To run the basic test:
 ```bash
 rvzr fuzz -s base.json -c basic/seq-BP.yaml -i 10 -n 100
 ```
@@ -202,7 +210,7 @@ Each violation directory will contain the program, the inputs, and the configura
 
 
 ### Intel <a name="intel"/>
-To run all the experiments with a signle command:
+From the base directoy, to run all the experiments with a signle command:
 
 ```bash
 ./run-intel.sh
@@ -309,7 +317,7 @@ Test #UD, #DB and #BP against *CT-SEQ*.
 **Result:** no violation.
 
 ### AMD <a name="amd"/>
-To run all the experiments with a single command:
+From the base directoy, to run all the experiments with a single command:
 ```bash
 ./run-amd.sh
 ```
