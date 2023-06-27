@@ -106,6 +106,9 @@ make install
 cd -
 ```
 
+**Note:** *Secure boot must be turned off in the BIOS settings. Otherwise, you should sign the module with an enrolled key. 
+On Ubuntu, you find more information [here](https://ubuntu.com/blog/how-to-sign-things-for-secure-boot)*
+
 3. Download ISA spec
 
 ```bash
