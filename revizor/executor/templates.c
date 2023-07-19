@@ -142,12 +142,10 @@ int load_template(size_t tc_size)
 
 #if VENDOR_ID == 1  // Intel
 #define READ_INTERRUPTS_START(DEST) \
-    READ_PFC_ONE("4") \
-    "sub "DEST", rdx \n"
+    READ_MSR_START("0x34", DEST)
 
 #define READ_INTERRUPTS_END(DEST) \
-    READ_PFC_ONE("4") \
-    "add "DEST", rdx \n"
+    READ_MSR_END("0x34", DEST)
 
 #elif VENDOR_ID == 2  // AMD
 #define READ_INTERRUPTS_START(DEST) \
