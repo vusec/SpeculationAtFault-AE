@@ -82,7 +82,7 @@ source ~/venv-revizor/bin/activate
 Install the package:
 
 ```
-pip install revizor/revizor_fuzzer--1.2.3-py3-none-any.whl
+pip install revizor/revizor_fuzzer-1.2.3-py3-none-any.whl
 ```
 
 Check installation:
