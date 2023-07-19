@@ -128,7 +128,7 @@ cd amd
 
 To run the basic test:
 ```bash
-rvzr fuzz -s base.json -c basic/seq-BP.yaml -i 10 -n 100
+rvzr fuzz -s ../base.json -c basic/seq-BP.yaml -i 10 -n 100
 ```
 
 This command will start a small fuzzing campaign testing breakpoint exceptions with 100 test cases, each tested with 10 inputs.
@@ -137,7 +137,7 @@ The command is expected to terminate without reporting a violation.
 Now, try the following command to fuzz page faults (#PF):
 
 ```bash
-rvzr fuzz -s base.json -c basic/seq-PF.yaml  -i 100 -n 100000000
+rvzr fuzz -s ../base.json -c basic/seq-PF.yaml  -i 100 -n 100000000
 ```
 
 Revizor should exit and report a violation after few seconds:
