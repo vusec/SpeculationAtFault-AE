@@ -25,6 +25,8 @@ instruction_blocklist:
   - LOCK CMPXCHG
   - CMPXCHG8B
   - LOCK CMPXCHG8B
+  - DIV
+  - IDIV
 
 program_size: 32
 avg_mem_accesses: 8
