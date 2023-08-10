@@ -1,6 +1,6 @@
 # Artifact Evaluation Submission [Usenix'23]
 
-["Speculation at Fault: Modeling and Testing Microarchitectural Leakage of CPU Exceptions"](https://www.usenix.org/system/files/usenixsecurity23-hofmann.pdf)
+Paper: ["Speculation at Fault: Modeling and Testing Microarchitectural Leakage of CPU Exceptions"](https://www.usenix.org/system/files/usenixsecurity23-hofmann.pdf)
 
 ### Table of Contents  
 - [How to Install](#requirements)  
